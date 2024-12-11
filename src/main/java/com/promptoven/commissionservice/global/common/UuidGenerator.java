@@ -8,6 +8,6 @@ import java.util.UUID;
 public class UuidGenerator {
 
     public static String generatePurchaseUuid() {
-        return "PC-" + UUID.randomUUID().toString();
+        return "CM-" + UUID.randomUUID().toString();
     }
 }

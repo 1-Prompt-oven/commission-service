@@ -35,6 +35,7 @@ public enum BaseResponseStatus {
      */
     DUPLICATED_DATA(HttpStatus.CONFLICT, false, "중복된 데이터입니다."),
 
+    NO_EXIST_COMMISSION(HttpStatus.NOT_FOUND, false, "존재하지 않는 커미션입니다."),
 
     /*
      * 500 INTERNAL_SERVER_ERROR: 내부 서버 오류
@@ -42,6 +43,8 @@ public enum BaseResponseStatus {
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, false, "내부 서버 오류입니다."),
     FILE_PROCESSING_ERROR(HttpStatus.PROCESSING, false, "파일 처리 중 오류가 발생했습니다."),
     ;
+
+
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
