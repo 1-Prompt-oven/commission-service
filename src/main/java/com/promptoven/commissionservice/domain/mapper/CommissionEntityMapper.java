@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommissionEntityMapper {
-    public CommissionResponseDto toCommissionResponseDto(Commission commission) {
+
+    public CommissionResponseDto toCommissionResponseDto(Commission commission, String role,
+            String commissionModifyRequest) {
         return CommissionResponseDto.builder()
                 .commissionUuid(commission.getCommissionUuid())
                 .clientUuid(commission.getClientUuid())
@@ -17,7 +19,10 @@ public class CommissionEntityMapper {
                 .commissionDeadline(commission.getCommissionDeadline())
                 .commissionModel(commission.getCommissionModel())
                 .commissionRequest(commission.getCommissionRequest())
+                .commissionModifyRequest(commission.getCommissionModifyRequest())
                 .commissionStatus(commission.getCommissionStatus())
+                .role(role)
+                .commissionModifyRequest(commissionModifyRequest)
                 .build();
     }
 }
