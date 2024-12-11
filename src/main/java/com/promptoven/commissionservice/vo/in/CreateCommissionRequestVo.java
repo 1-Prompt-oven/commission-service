@@ -13,5 +13,6 @@ public class CreateCommissionRequestVo {
     private String commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
+    private String commissionModifyRequest;
 
 }

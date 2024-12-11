@@ -20,5 +20,7 @@ public class CommissionResponseVo {
     private String commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
+    private String commissionModifyRequest;
     private String commissionStatus;
+    private String role;
 }

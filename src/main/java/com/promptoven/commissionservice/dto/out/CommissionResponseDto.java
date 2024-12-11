@@ -20,5 +20,7 @@ public class CommissionResponseDto {
     private String commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
+    private String commissionModifyRequest;
     private String commissionStatus;
+    private String role;
 }
