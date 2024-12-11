@@ -62,7 +62,7 @@ spring:
       on-profile: prod
     import:
       - classpath:eventTopic.yml
-      - "optional:configserver:http://config-server:8888"
+      
   datasource:
     url: jdbc:mysql://mysql:3306/commission
     username: root
