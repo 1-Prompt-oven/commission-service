@@ -2,11 +2,14 @@ package com.promptoven.commissionservice.presentation;
 
 import com.promptoven.commissionservice.application.CommissionService;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
-import com.promptoven.commissionservice.global.common.response.BaseResponseStatus;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
+import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,7 @@ public class CommissionController {
 
     private final CommissionService commissionService;
     private final CommissionVoMapper commissionVoMapper;
+    private final CommissionDtoMapper commissionDtoMapper;
 
     @PostMapping
     public BaseResponse<Void> createCommission(@RequestBody CreateCommissionRequestVo createCommissionRequestVo) {
@@ -29,5 +33,12 @@ public class CommissionController {
         commissionService.createCommission(createCommissionRequestDto);
 
         return new BaseResponse<>();
+    }
+
+    @GetMapping("/{userUuid}")
+    public BaseResponse<CommissionResponseVo> getCommissionDetails(@PathVariable String userUuid) {
+
+        return new BaseResponse<>(
+                commissionDtoMapper.toCommissionResponseVo(commissionService.getCommissionDetails(userUuid)));
     }
 }
