@@ -33,7 +33,7 @@ public class Commission {
     private String commissionDescription;
 
     @Column(nullable = false)
-    private String commissionPrice;
+    private Long commissionPrice;
 
     @Column(nullable = false)
     private String commissionDeadline;
@@ -46,4 +46,8 @@ public class Commission {
 
     @Column(nullable = false)
     private String commissionStatus;
+
+    @Column
+    private String commissionModifyRequest;
+
 }

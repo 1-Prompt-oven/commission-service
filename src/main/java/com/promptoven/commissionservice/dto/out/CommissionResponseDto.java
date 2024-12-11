@@ -16,7 +16,7 @@ public class CommissionResponseDto {
     private String creatorUuid;
     private String commissionTitle;
     private String commissionDescription;
-    private String commissionPrice;
+    private Long commissionPrice;
     private String commissionDeadline;
     private String commissionModel;
     private String commissionRequest;

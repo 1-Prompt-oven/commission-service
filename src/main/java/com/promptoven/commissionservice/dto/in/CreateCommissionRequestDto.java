@@ -15,7 +15,7 @@ public class CreateCommissionRequestDto {
     private String clientUuid;
     private String creatorUuid;
     private String commissionDescription;
-    private String commissionPrice;
+    private Long commissionPrice;
     private String commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
