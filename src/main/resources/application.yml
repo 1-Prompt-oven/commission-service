@@ -34,7 +34,7 @@ spring:
       - classpath:eventTopic.yml
       - "optional:configserver:http://config-server:8888"
   datasource:
-    url: jdbc:mysql://localhost:3306/commission_service
+    url: jdbc:mysql://localhost:3309/commission_service
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
