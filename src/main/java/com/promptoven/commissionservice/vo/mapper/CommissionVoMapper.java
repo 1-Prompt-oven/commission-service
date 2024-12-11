@@ -16,6 +16,7 @@ public class CommissionVoMapper {
                 .commissionDeadline(createCommissionRequestVo.getCommissionDeadline())
                 .commissionModel(createCommissionRequestVo.getCommissionModel())
                 .commissionRequest(createCommissionRequestVo.getCommissionRequest())
+                .commissionModifyRequest(createCommissionRequestVo.getCommissionModifyRequest())
                 .build();
     }
 }

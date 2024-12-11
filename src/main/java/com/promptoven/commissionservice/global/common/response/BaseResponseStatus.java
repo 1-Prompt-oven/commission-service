@@ -36,7 +36,7 @@ public enum BaseResponseStatus {
     DUPLICATED_DATA(HttpStatus.CONFLICT, false, "중복된 데이터입니다."),
 
     NO_EXIST_COMMISSION(HttpStatus.NOT_FOUND, false, "존재하지 않는 커미션입니다."),
-
+    NO_MATCHING_ROLE(HttpStatus.FORBIDDEN, false, "매칭되는 역할이 없습니다."),
     /*
      * 500 INTERNAL_SERVER_ERROR: 내부 서버 오류
      */
