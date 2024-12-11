@@ -8,4 +8,7 @@ public interface CommissionService {
     void createCommission(CreateCommissionRequestDto createCommissionRequestDto);
 
     CommissionResponseDto getCommissionDetails(String userUuid);
+
+    void getCommissionList(String userUuid, String sortBy);
+
 }

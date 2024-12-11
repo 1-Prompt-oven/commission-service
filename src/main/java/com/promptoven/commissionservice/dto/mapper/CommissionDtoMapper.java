@@ -24,7 +24,7 @@ public class CommissionDtoMapper {
                 .commissionDeadline(createCommissionRequestDto.getCommissionDeadline())
                 .commissionModel(createCommissionRequestDto.getCommissionModel())
                 .commissionRequest(createCommissionRequestDto.getCommissionRequest())
-                .commissionStatus(CommissionStatus.REQUESTED.name())
+                .commissionStatus(CommissionStatus.REQUESTED)
                 .build();
     }
 
