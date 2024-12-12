@@ -14,6 +14,7 @@ import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
+import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import com.promptoven.commissionservice.global.error.BaseException;
 import com.promptoven.commissionservice.infrastructure.CommissionRepository;
 import java.util.List;
@@ -30,8 +31,11 @@ public class CommissionServiceImpl implements CommissionService {
     private final CommissionEntityMapper commissionEntityMapper;
 
     @Override
-    public void createCommission(CreateCommissionRequestDto createCommissionRequestDto) {
-        commissionRepository.save(commissionDtoMapper.toCommission(createCommissionRequestDto));
+    public CreateCommissionResponseDto createCommission(CreateCommissionRequestDto createCommissionRequestDto) {
+        Commission commission = commissionRepository.save(commissionDtoMapper.toCommission(createCommissionRequestDto));
+
+        return commissionEntityMapper.toCreateCommissionResponseDto(commission);
+
     }
 
     @Override

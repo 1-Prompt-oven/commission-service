@@ -2,10 +2,10 @@ package com.promptoven.commissionservice.presentation;
 
 import com.promptoven.commissionservice.application.CommissionService;
 import com.promptoven.commissionservice.domain.CommissionStatus;
-import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.in.GetDetailsRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
+import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
 import com.promptoven.commissionservice.vo.in.RequestModifyReqVo;
@@ -13,6 +13,7 @@ import com.promptoven.commissionservice.vo.in.UploadResultRequestVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
 import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
+import com.promptoven.commissionservice.vo.out.CreateCommissionResponseVo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,21 +35,22 @@ public class CommissionController {
     private final CommissionDtoMapper commissionDtoMapper;
 
     @PostMapping
-    public BaseResponse<Void> createCommission(@RequestBody CreateCommissionRequestVo createCommissionRequestVo) {
+    public BaseResponse<CreateCommissionResponseVo> createCommission(
+            @RequestBody CreateCommissionRequestVo createCommissionRequestVo) {
 
-        CreateCommissionRequestDto createCommissionRequestDto = commissionVoMapper.toCreateCommissionRequestDto(
-                createCommissionRequestVo);
+        CreateCommissionResponseDto commissionResponseDto = commissionService.createCommission(
+                commissionVoMapper.toCreateCommissionRequestDto(createCommissionRequestVo));
 
-        commissionService.createCommission(createCommissionRequestDto);
-
-        return new BaseResponse<>();
+        return new BaseResponse<>(commissionDtoMapper.toCreateCommissionResponseVo(commissionResponseDto));
     }
 
     @GetMapping("/details")
-    public BaseResponse<CommissionResponseVo> getCommissionDetails(@RequestBody GetDetailsRequestDto getDetailsRequestDto) {
+    public BaseResponse<CommissionResponseVo> getCommissionDetails(
+            @RequestBody GetDetailsRequestDto getDetailsRequestDto) {
 
-        return new BaseResponse<>(
-                commissionDtoMapper.toCommissionResponseVo(commissionService.getCommissionDetails(getDetailsRequestDto)));
+        return new BaseResponse<>(commissionDtoMapper.toCommissionResponseVo(
+                commissionService.getCommissionDetails(getDetailsRequestDto))
+        );
     }
 
     @GetMapping("/list/{userUuid}")
@@ -71,7 +73,7 @@ public class CommissionController {
     }
 
     @PutMapping("/requestModify")
-    public BaseResponse<Void> requestCommissionModify(@RequestBody RequestModifyReqVo requestModifyReqVo)  {
+    public BaseResponse<Void> requestCommissionModify(@RequestBody RequestModifyReqVo requestModifyReqVo) {
 
         commissionService.requestCommissionModify(commissionVoMapper.toRequestModifyReqDto(requestModifyReqVo));
 

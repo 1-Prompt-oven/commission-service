@@ -5,9 +5,11 @@ import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
+import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import com.promptoven.commissionservice.global.common.UuidGenerator;
 import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
+import com.promptoven.commissionservice.vo.out.CreateCommissionResponseVo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -62,5 +64,12 @@ public class CommissionDtoMapper {
                         .requestedDate(Dto.getRequestedDate())
                         .build())
                 .toList();
+    }
+
+    public CreateCommissionResponseVo toCreateCommissionResponseVo(
+            CreateCommissionResponseDto createCommissionResponseDto) {
+        return CreateCommissionResponseVo.builder()
+                .commissionUuid(createCommissionResponseDto.getCommissionUuid())
+                .build();
     }
 }

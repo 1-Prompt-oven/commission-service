@@ -7,11 +7,12 @@ import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
 import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
+import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import java.util.List;
 
 public interface CommissionService {
 
-    void createCommission(CreateCommissionRequestDto createCommissionRequestDto);
+    CreateCommissionResponseDto createCommission(CreateCommissionRequestDto createCommissionRequestDto);
 
     CommissionResponseDto getCommissionDetails(GetDetailsRequestDto getDetailsRequestDto);
 
