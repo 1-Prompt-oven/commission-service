@@ -45,13 +45,11 @@ public class CommissionController {
         return new BaseResponse<>(commissionDtoMapper.toCreateCommissionResponseVo(commissionResponseDto));
     }
 
-    @GetMapping("/details")
-    public BaseResponse<CommissionResponseVo> getCommissionDetails(@RequestBody GetDetailsRequestVo getDetailsRequestVo) {
-
-        GetDetailsRequestDto getDetailsRequestDto = commissionVoMapper.toGetDetailsRequestDto(getDetailsRequestVo);
+    @GetMapping("/details/{commissionUuid}")
+    public BaseResponse<CommissionResponseVo> getCommissionDetails(@PathVariable String commissionUuid, @RequestParam String userUuid) {
 
         return new BaseResponse<>(commissionDtoMapper.toCommissionResponseVo(
-                commissionService.getCommissionDetails(getDetailsRequestDto))
+                commissionService.getCommissionDetails(commissionUuid, userUuid))
         );
     }
 

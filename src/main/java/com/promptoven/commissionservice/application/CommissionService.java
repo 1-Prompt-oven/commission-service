@@ -14,7 +14,7 @@ public interface CommissionService {
 
     CreateCommissionResponseDto createCommission(CreateCommissionRequestDto createCommissionRequestDto);
 
-    CommissionResponseDto getCommissionDetails(GetDetailsRequestDto getDetailsRequestDto);
+    CommissionResponseDto getCommissionDetails(String commissionUuid, String userUuid);
 
     List<CommissionListResponseDto> getCommissionList(String userUuid, String sortBy);
 

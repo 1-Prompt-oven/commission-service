@@ -39,11 +39,9 @@ public class CommissionServiceImpl implements CommissionService {
     }
 
     @Override
-    public CommissionResponseDto getCommissionDetails(GetDetailsRequestDto getDetailsRequestDto) {
+    public CommissionResponseDto getCommissionDetails(String commissionUuid, String userUuid) {
 
-        String userUuid = getDetailsRequestDto.getUserUuid();
-
-        Commission commission = commissionRepository.findByCommissionUuid(getDetailsRequestDto.getCommissionUuid())
+        Commission commission = commissionRepository.findByCommissionUuid(commissionUuid)
                 .orElseThrow(() -> new BaseException(NO_EXIST_COMMISSION));
 
         Role role;
