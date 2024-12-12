@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommissionRepository extends JpaRepository<Commission, String> {
-    Optional<Commission> findByClientUuidOrCreatorUuid(String clientUuid, String creatorUuid);
-
     List<Commission> findByClientUuidOrCreatorUuid(String clientUuid, String creatorUuid, Sort sort);
 
     Optional<Commission> findByCommissionUuid(String commissionUuid);

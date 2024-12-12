@@ -2,6 +2,7 @@ package com.promptoven.commissionservice.application;
 
 import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.in.GetDetailsRequestDto;
 import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
 import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
@@ -12,7 +13,7 @@ public interface CommissionService {
 
     void createCommission(CreateCommissionRequestDto createCommissionRequestDto);
 
-    CommissionResponseDto getCommissionDetails(String userUuid);
+    CommissionResponseDto getCommissionDetails(GetDetailsRequestDto getDetailsRequestDto);
 
     List<CommissionListResponseDto> getCommissionList(String userUuid, String sortBy);
 

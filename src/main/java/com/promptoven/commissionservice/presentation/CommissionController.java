@@ -3,6 +3,7 @@ package com.promptoven.commissionservice.presentation;
 import com.promptoven.commissionservice.application.CommissionService;
 import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.in.GetDetailsRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
@@ -43,11 +44,11 @@ public class CommissionController {
         return new BaseResponse<>();
     }
 
-    @GetMapping("/details/{userUuid}")
-    public BaseResponse<CommissionResponseVo> getCommissionDetails(@PathVariable String userUuid) {
+    @GetMapping("/details")
+    public BaseResponse<CommissionResponseVo> getCommissionDetails(@RequestBody GetDetailsRequestDto getDetailsRequestDto) {
 
         return new BaseResponse<>(
-                commissionDtoMapper.toCommissionResponseVo(commissionService.getCommissionDetails(userUuid)));
+                commissionDtoMapper.toCommissionResponseVo(commissionService.getCommissionDetails(getDetailsRequestDto)));
     }
 
     @GetMapping("/list/{userUuid}")
