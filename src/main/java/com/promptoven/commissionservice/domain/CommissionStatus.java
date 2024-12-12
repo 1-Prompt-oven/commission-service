@@ -1,8 +1,9 @@
 package com.promptoven.commissionservice.domain;
 
 public enum CommissionStatus {
+    REVISION_REQUESTED,
     REQUESTED,
-    ACCEPTED,
-    DECLINED,
+    IN_PROGRESS,
+    REJECTED,
     COMPLETED
 }
