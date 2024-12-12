@@ -55,4 +55,7 @@ public class Commission extends BaseEntity {
 
     @Column
     private String commissionModifyRequest;
+
+    @Column
+    private String commissionResult;
 }

@@ -8,6 +8,7 @@ import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
 import com.promptoven.commissionservice.vo.in.RequestModifyReqVo;
+import com.promptoven.commissionservice.vo.in.UploadResultRequestVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
 import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
@@ -72,6 +73,14 @@ public class CommissionController {
     public BaseResponse<Void> requestCommissionModify(@RequestBody RequestModifyReqVo requestModifyReqVo)  {
 
         commissionService.requestCommissionModify(commissionVoMapper.toRequestModifyReqDto(requestModifyReqVo));
+
+        return new BaseResponse<>();
+    }
+
+    @PostMapping("/uploadResult")
+    public BaseResponse<Void> uploadResult(@RequestBody UploadResultRequestVo uploadResultRequestVo) {
+
+        commissionService.uploadResult(commissionVoMapper.toUploadResultRequestDto(uploadResultRequestVo));
 
         return new BaseResponse<>();
     }

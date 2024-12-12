@@ -26,5 +26,6 @@ public class CommissionResponseDto {
     private String commissionRequest;
     private String commissionModifyRequest;
     private CommissionStatus commissionStatus;
+    private String commissionResult;
     private Role role;
 }

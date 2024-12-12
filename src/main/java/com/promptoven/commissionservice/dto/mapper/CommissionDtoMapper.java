@@ -45,6 +45,7 @@ public class CommissionDtoMapper {
                 .commissionModifyRequest(commissionResponseDto.getCommissionModifyRequest())
                 .commissionStatus(commissionResponseDto.getCommissionStatus())
                 .commissionModifyRequest(commissionResponseDto.getCommissionModifyRequest())
+                .commissionResult(commissionResponseDto.getCommissionResult())
                 .role(commissionResponseDto.getRole())
                 .build();
     }
