@@ -4,6 +4,7 @@ import static com.promptoven.commissionservice.global.common.response.BaseRespon
 import static com.promptoven.commissionservice.global.common.response.BaseResponseStatus.NO_MATCHING_ROLE;
 
 import com.promptoven.commissionservice.domain.Commission;
+import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.domain.mapper.CommissionEntityMapper;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
@@ -58,5 +59,25 @@ public class CommissionServiceImpl implements CommissionService {
 
         return commissionEntityMapper.toCommissionListResponseDto(commissions);
 
+    }
+
+    @Override
+    public void updateCommissionStatus(String commissionUuid, CommissionStatus status) {
+        Commission commission = commissionRepository.findByCommissionUuid(commissionUuid)
+                .orElseThrow(() -> new BaseException(NO_EXIST_COMMISSION));
+
+        Commission updatedCommission = Commission.builder()
+                .commissionUuid(commission.getCommissionUuid())
+                .clientUuid(commission.getClientUuid())
+                .creatorUuid(commission.getCreatorUuid())
+                .commissionTitle(commission.getCommissionTitle())
+                .commissionDescription(commission.getCommissionDescription())
+                .commissionPrice(commission.getCommissionPrice())
+                .commissionDeadline(commission.getCommissionDeadline())
+                .commissionModel(commission.getCommissionModel())
+                .commissionStatus(status)
+                .build();
+
+        commissionRepository.save(updatedCommission);
     }
 }
