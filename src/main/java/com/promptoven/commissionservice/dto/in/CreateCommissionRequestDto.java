@@ -1,5 +1,6 @@
 package com.promptoven.commissionservice.dto.in;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class CreateCommissionRequestDto {
     private String creatorUuid;
     private String commissionDescription;
     private Long commissionPrice;
-    private String commissionDeadline;
+    private LocalDate commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
     private String commissionModifyRequest;

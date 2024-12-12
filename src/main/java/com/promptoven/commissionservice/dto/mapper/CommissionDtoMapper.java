@@ -3,9 +3,12 @@ package com.promptoven.commissionservice.dto.mapper;
 import com.promptoven.commissionservice.domain.Commission;
 import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
 import com.promptoven.commissionservice.global.common.UuidGenerator;
+import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +27,7 @@ public class CommissionDtoMapper {
                 .commissionDeadline(createCommissionRequestDto.getCommissionDeadline())
                 .commissionModel(createCommissionRequestDto.getCommissionModel())
                 .commissionRequest(createCommissionRequestDto.getCommissionRequest())
-                .commissionStatus(CommissionStatus.REQUESTED.name())
+                .commissionStatus(CommissionStatus.REQUESTED)
                 .build();
     }
 
@@ -44,5 +47,19 @@ public class CommissionDtoMapper {
                 .commissionModifyRequest(commissionResponseDto.getCommissionModifyRequest())
                 .role(commissionResponseDto.getRole())
                 .build();
+    }
+
+    public List<CommissionListResponseVo> toCommissionListResponseVo(List<CommissionListResponseDto> commissionListResponseDto) {
+        return commissionListResponseDto.stream()
+                .map(Dto -> CommissionListResponseVo.builder()
+                        .commissionUuid(Dto.getCommissionUuid())
+                        .clientUuid(Dto.getClientUuid())
+                        .title(Dto.getTitle())
+                        .price(Dto.getPrice())
+                        .deadline(Dto.getDeadline())
+                        .status(Dto.getStatus())
+                        .requestedDate(Dto.getRequestedDate())
+                        .build())
+                .toList();
     }
 }

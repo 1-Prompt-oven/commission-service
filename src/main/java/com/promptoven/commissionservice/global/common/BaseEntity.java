@@ -21,4 +21,5 @@ public abstract class BaseEntity {
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate; // 수정일
+
 }

@@ -1,9 +1,14 @@
 package com.promptoven.commissionservice.vo.out;
 
+import com.promptoven.commissionservice.domain.CommissionStatus;
+import com.promptoven.commissionservice.domain.Role;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 @Getter
 @Builder
@@ -17,10 +22,10 @@ public class CommissionResponseVo {
     private String commissionTitle;
     private String commissionDescription;
     private Long commissionPrice;
-    private String commissionDeadline;
+    private LocalDate commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
     private String commissionModifyRequest;
-    private String commissionStatus;
-    private String role;
+    private CommissionStatus commissionStatus;
+    private Role role;
 }
