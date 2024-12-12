@@ -4,6 +4,7 @@ import com.promptoven.commissionservice.domain.Commission;
 import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
+import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -42,5 +43,11 @@ public class CommissionEntityMapper {
                         .requestedDate(commission.getCreatedDate())
                         .build())
                 .toList();
+    }
+
+    public CreateCommissionResponseDto toCreateCommissionResponseDto(Commission commission) {
+        return CreateCommissionResponseDto.builder()
+                .commissionUuid(commission.getCommissionUuid())
+                .build();
     }
 }
