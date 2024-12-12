@@ -1,9 +1,11 @@
 package com.promptoven.commissionservice.vo.mapper;
 
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.in.GetDetailsRequestDto;
 import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
 import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
+import com.promptoven.commissionservice.vo.in.GetDetailsRequestVo;
 import com.promptoven.commissionservice.vo.in.RequestModifyReqVo;
 import com.promptoven.commissionservice.vo.in.UploadResultRequestVo;
 import org.springframework.stereotype.Component;
@@ -35,6 +37,13 @@ public class CommissionVoMapper {
         return UploadResultRequestDto.builder()
                 .commissionUuid(uploadResultRequestVo.getCommissionUuid())
                 .commissionResult(uploadResultRequestVo.getCommissionResult())
+                .build();
+    }
+
+    public GetDetailsRequestDto toGetDetailsRequestDto(GetDetailsRequestVo getDetailsRequestVo) {
+        return GetDetailsRequestDto.builder()
+                .commissionUuid(getDetailsRequestVo.getCommissionUuid())
+                .userUuid(getDetailsRequestVo.getUserUuid())
                 .build();
     }
 }
