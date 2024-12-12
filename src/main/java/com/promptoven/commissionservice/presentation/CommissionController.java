@@ -8,6 +8,7 @@ import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CreateCommissionResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
+import com.promptoven.commissionservice.vo.in.GetDetailsRequestVo;
 import com.promptoven.commissionservice.vo.in.RequestModifyReqVo;
 import com.promptoven.commissionservice.vo.in.UploadResultRequestVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
@@ -45,8 +46,9 @@ public class CommissionController {
     }
 
     @GetMapping("/details")
-    public BaseResponse<CommissionResponseVo> getCommissionDetails(
-            @RequestBody GetDetailsRequestDto getDetailsRequestDto) {
+    public BaseResponse<CommissionResponseVo> getCommissionDetails(@RequestBody GetDetailsRequestVo getDetailsRequestVo) {
+
+        GetDetailsRequestDto getDetailsRequestDto = commissionVoMapper.toGetDetailsRequestDto(getDetailsRequestVo);
 
         return new BaseResponse<>(commissionDtoMapper.toCommissionResponseVo(
                 commissionService.getCommissionDetails(getDetailsRequestDto))
