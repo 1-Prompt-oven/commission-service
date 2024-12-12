@@ -8,6 +8,7 @@ import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.domain.mapper.CommissionEntityMapper;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
@@ -76,6 +77,27 @@ public class CommissionServiceImpl implements CommissionService {
                 .commissionDeadline(commission.getCommissionDeadline())
                 .commissionModel(commission.getCommissionModel())
                 .commissionStatus(status)
+                .build();
+
+        commissionRepository.save(updatedCommission);
+    }
+
+    @Override
+    public void requestCommissionModify(RequestModifyReqDto requestModifyReqDto) {
+        Commission commission = commissionRepository.findByCommissionUuid(requestModifyReqDto.getCommissionUuid())
+                .orElseThrow(() -> new BaseException(NO_EXIST_COMMISSION));
+
+        Commission updatedCommission = Commission.builder()
+                .commissionUuid(commission.getCommissionUuid())
+                .clientUuid(commission.getClientUuid())
+                .creatorUuid(commission.getCreatorUuid())
+                .commissionTitle(commission.getCommissionTitle())
+                .commissionDescription(commission.getCommissionDescription())
+                .commissionPrice(commission.getCommissionPrice())
+                .commissionDeadline(commission.getCommissionDeadline())
+                .commissionModel(commission.getCommissionModel())
+                .commissionStatus(commission.getCommissionStatus())
+                .commissionModifyRequest(requestModifyReqDto.getCommissionModifyRequest())
                 .build();
 
         commissionRepository.save(updatedCommission);

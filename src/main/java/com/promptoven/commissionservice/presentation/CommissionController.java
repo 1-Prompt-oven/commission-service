@@ -7,6 +7,7 @@ import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
+import com.promptoven.commissionservice.vo.in.RequestModifyReqVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
 import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
@@ -63,6 +64,14 @@ public class CommissionController {
             @RequestParam CommissionStatus status) {
 
         commissionService.updateCommissionStatus(commissionUuid, status);
+
+        return new BaseResponse<>();
+    }
+
+    @PutMapping("/requestModify")
+    public BaseResponse<Void> requestCommissionModify(@RequestBody RequestModifyReqVo requestModifyReqVo)  {
+
+        commissionService.requestCommissionModify(commissionVoMapper.toRequestModifyReqDto(requestModifyReqVo));
 
         return new BaseResponse<>();
     }
