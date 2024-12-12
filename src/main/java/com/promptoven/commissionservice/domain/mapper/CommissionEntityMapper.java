@@ -26,6 +26,7 @@ public class CommissionEntityMapper {
                 .commissionStatus(commission.getCommissionStatus())
                 .role(role)
                 .commissionModifyRequest(commissionModifyRequest)
+                .commissionResult(commission.getCommissionResult())
                 .build();
     }
 

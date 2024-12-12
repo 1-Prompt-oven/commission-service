@@ -9,6 +9,7 @@ import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.domain.mapper.CommissionEntityMapper;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
+import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
@@ -76,7 +77,10 @@ public class CommissionServiceImpl implements CommissionService {
                 .commissionPrice(commission.getCommissionPrice())
                 .commissionDeadline(commission.getCommissionDeadline())
                 .commissionModel(commission.getCommissionModel())
+                .commissionRequest(commission.getCommissionRequest())
+                .commissionModifyRequest(commission.getCommissionModifyRequest())
                 .commissionStatus(status)
+                .commissionResult(commission.getCommissionResult())
                 .build();
 
         commissionRepository.save(updatedCommission);
@@ -96,8 +100,33 @@ public class CommissionServiceImpl implements CommissionService {
                 .commissionPrice(commission.getCommissionPrice())
                 .commissionDeadline(commission.getCommissionDeadline())
                 .commissionModel(commission.getCommissionModel())
+                .commissionRequest(commission.getCommissionRequest())
                 .commissionStatus(commission.getCommissionStatus())
                 .commissionModifyRequest(requestModifyReqDto.getCommissionModifyRequest())
+                .commissionResult(commission.getCommissionResult())
+                .build();
+
+        commissionRepository.save(updatedCommission);
+    }
+
+    @Override
+    public void uploadResult(UploadResultRequestDto uploadResultRequestDto) {
+        Commission commission = commissionRepository.findByCommissionUuid(uploadResultRequestDto.getCommissionUuid())
+                .orElseThrow(() -> new BaseException(NO_EXIST_COMMISSION));
+
+        Commission updatedCommission = Commission.builder()
+                .commissionUuid(commission.getCommissionUuid())
+                .clientUuid(commission.getClientUuid())
+                .creatorUuid(commission.getCreatorUuid())
+                .commissionTitle(commission.getCommissionTitle())
+                .commissionDescription(commission.getCommissionDescription())
+                .commissionPrice(commission.getCommissionPrice())
+                .commissionDeadline(commission.getCommissionDeadline())
+                .commissionModel(commission.getCommissionModel())
+                .commissionRequest(commission.getCommissionRequest())
+                .commissionStatus(commission.getCommissionStatus())
+                .commissionModifyRequest(commission.getCommissionModifyRequest())
+                .commissionResult(uploadResultRequestDto.getCommissionResult())
                 .build();
 
         commissionRepository.save(updatedCommission);
