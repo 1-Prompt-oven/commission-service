@@ -8,6 +8,7 @@ import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.domain.mapper.CommissionEntityMapper;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
+import com.promptoven.commissionservice.dto.in.GetDetailsRequestDto;
 import com.promptoven.commissionservice.dto.in.RequestModifyReqDto;
 import com.promptoven.commissionservice.dto.in.UploadResultRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
@@ -34,14 +35,21 @@ public class CommissionServiceImpl implements CommissionService {
     }
 
     @Override
-    public CommissionResponseDto getCommissionDetails(String userUuid) {
-        Commission commission = commissionRepository.findByClientUuidOrCreatorUuid(userUuid, userUuid)
+    public CommissionResponseDto getCommissionDetails(GetDetailsRequestDto getDetailsRequestDto) {
+
+        String userUuid = getDetailsRequestDto.getUserUuid();
+
+        Commission commission = commissionRepository.findByCommissionUuid(getDetailsRequestDto.getCommissionUuid())
                 .orElseThrow(() -> new BaseException(NO_EXIST_COMMISSION));
 
         Role role;
-        if (userUuid.equals(commission.getClientUuid())) { role = Role.CLIENT; }
-        else if (userUuid.equals(commission.getCreatorUuid())) {role = Role.CREATOR; }
-        else { throw new BaseException(NO_MATCHING_ROLE); }
+        if (userUuid.equals(commission.getClientUuid())) {
+            role = Role.CLIENT;
+        } else if (userUuid.equals(commission.getCreatorUuid())) {
+            role = Role.CREATOR;
+        } else {
+            throw new BaseException(NO_MATCHING_ROLE);
+        }
 
         String commissionModifyRequest = Role.CREATOR.equals(role) ? commission.getCommissionModifyRequest() : null;
 
@@ -49,7 +57,7 @@ public class CommissionServiceImpl implements CommissionService {
     }
 
     @Override
-    public List<CommissionListResponseDto> getCommissionList (String userUuid, String sortBy){
+    public List<CommissionListResponseDto> getCommissionList(String userUuid, String sortBy) {
 
         Sort sort = switch (sortBy) {
             case "Price" -> Sort.by(Sort.Order.desc("commissionPrice"));
