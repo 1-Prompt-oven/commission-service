@@ -1,6 +1,7 @@
 package com.promptoven.commissionservice.presentation;
 
 import com.promptoven.commissionservice.application.CommissionService;
+import com.promptoven.commissionservice.domain.CommissionStatus;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
 import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,5 +56,14 @@ public class CommissionController {
                 sortBy);
 
         return new BaseResponse<>(commissionDtoMapper.toCommissionListResponseVo(commissionListResponseDtoList));
+    }
+
+    @PutMapping("/statusUpdate/{commissionUuid}")
+    public BaseResponse<Void> updateCommissionStatus(@PathVariable String commissionUuid,
+            @RequestParam CommissionStatus status) {
+
+        commissionService.updateCommissionStatus(commissionUuid, status);
+
+        return new BaseResponse<>();
     }
 }
