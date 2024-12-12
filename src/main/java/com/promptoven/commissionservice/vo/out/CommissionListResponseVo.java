@@ -1,4 +1,4 @@
-package com.promptoven.commissionservice.dto.out;
+package com.promptoven.commissionservice.vo.out;
 
 import com.promptoven.commissionservice.domain.CommissionStatus;
 import java.time.LocalDate;
@@ -8,11 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class CommissionListResponseDto {
+@NoArgsConstructor
+public class CommissionListResponseVo {
 
     private String commissionUuid;
     private String title;

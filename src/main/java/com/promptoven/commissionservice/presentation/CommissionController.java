@@ -3,10 +3,13 @@ package com.promptoven.commissionservice.presentation;
 import com.promptoven.commissionservice.application.CommissionService;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
+import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.global.common.response.BaseResponse;
 import com.promptoven.commissionservice.vo.in.CreateCommissionRequestVo;
 import com.promptoven.commissionservice.vo.mapper.CommissionVoMapper;
+import com.promptoven.commissionservice.vo.out.CommissionListResponseVo;
 import com.promptoven.commissionservice.vo.out.CommissionResponseVo;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,10 +47,12 @@ public class CommissionController {
     }
 
     @GetMapping("/list/{userUuid}")
-    public BaseResponse<Void> getCommissionList(@PathVariable String userUuid, @RequestParam(defaultValue = "Latest") String sortBy) {
+    public BaseResponse<List<CommissionListResponseVo>> getCommissionList(@PathVariable String userUuid,
+            @RequestParam(defaultValue = "Latest") String sortBy) {
 
-        commissionService.getCommissionList(userUuid, sortBy);
+        List<CommissionListResponseDto> commissionListResponseDtoList = commissionService.getCommissionList(userUuid,
+                sortBy);
 
-        return new BaseResponse<>();
+        return new BaseResponse<>(commissionDtoMapper.toCommissionListResponseVo(commissionListResponseDtoList));
     }
 }

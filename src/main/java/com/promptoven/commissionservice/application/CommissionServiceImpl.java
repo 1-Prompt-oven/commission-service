@@ -8,6 +8,7 @@ import com.promptoven.commissionservice.domain.Role;
 import com.promptoven.commissionservice.domain.mapper.CommissionEntityMapper;
 import com.promptoven.commissionservice.dto.in.CreateCommissionRequestDto;
 import com.promptoven.commissionservice.dto.mapper.CommissionDtoMapper;
+import com.promptoven.commissionservice.dto.out.CommissionListResponseDto;
 import com.promptoven.commissionservice.dto.out.CommissionResponseDto;
 import com.promptoven.commissionservice.global.error.BaseException;
 import com.promptoven.commissionservice.infrastructure.CommissionRepository;
@@ -45,15 +46,17 @@ public class CommissionServiceImpl implements CommissionService {
     }
 
     @Override
-    public void getCommissionList (String userUuid, String sortBy){
+    public List<CommissionListResponseDto> getCommissionList (String userUuid, String sortBy){
 
         Sort sort = switch (sortBy) {
-            case "Price" -> Sort.by(Sort.Order.asc("commissionPrice"));
+            case "Price" -> Sort.by(Sort.Order.desc("commissionPrice"));
             case "Deadline" -> Sort.by(Sort.Order.asc("commissionDeadline"));
-            default -> Sort.by(Sort.Order.desc("createdAt"));
+            default -> Sort.by(Sort.Order.desc("createdDate"));
         };
 
         List<Commission> commissions = commissionRepository.findByClientUuidOrCreatorUuid(userUuid, userUuid, sort);
+
+        return commissionEntityMapper.toCommissionListResponseDto(commissions);
 
     }
 }

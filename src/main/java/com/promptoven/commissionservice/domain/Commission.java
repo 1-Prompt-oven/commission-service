@@ -3,8 +3,12 @@ package com.promptoven.commissionservice.domain;
 import com.promptoven.commissionservice.global.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,7 +41,7 @@ public class Commission extends BaseEntity {
     private Long commissionPrice;
 
     @Column(nullable = false)
-    private String commissionDeadline;
+    private LocalDate commissionDeadline;
 
     @Column(nullable = false)
     private String commissionModel;
@@ -46,9 +50,9 @@ public class Commission extends BaseEntity {
     private String commissionRequest;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private CommissionStatus commissionStatus;
 
     @Column
     private String commissionModifyRequest;
-
 }
