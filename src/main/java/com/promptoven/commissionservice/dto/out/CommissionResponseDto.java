@@ -1,5 +1,9 @@
 package com.promptoven.commissionservice.dto.out;
 
+import com.promptoven.commissionservice.domain.CommissionStatus;
+import com.promptoven.commissionservice.domain.Role;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +21,10 @@ public class CommissionResponseDto {
     private String commissionTitle;
     private String commissionDescription;
     private Long commissionPrice;
-    private String commissionDeadline;
+    private LocalDate commissionDeadline;
     private String commissionModel;
     private String commissionRequest;
     private String commissionModifyRequest;
-    private String commissionStatus;
-    private String role;
+    private CommissionStatus commissionStatus;
+    private Role role;
 }
