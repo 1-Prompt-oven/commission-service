@@ -5,5 +5,6 @@ public enum CommissionStatus {
     REQUESTED,
     IN_PROGRESS,
     REJECTED,
-    COMPLETED
+    COMPLETED,
+    REVISION_COMPLETED
 }
