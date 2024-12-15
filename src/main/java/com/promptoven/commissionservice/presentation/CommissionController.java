@@ -48,8 +48,7 @@ public class CommissionController {
     @GetMapping("/details/{commissionUuid}")
     public BaseResponse<CommissionResponseVo> getCommissionDetails(@PathVariable String commissionUuid, @RequestParam String userUuid) {
 
-        return new BaseResponse<>(commissionDtoMapper.toCommissionResponseVo(
-                commissionService.getCommissionDetails(commissionUuid, userUuid))
+        return new BaseResponse<>(commissionDtoMapper.toCommissionResponseVo(commissionService.getCommissionDetails(commissionUuid, userUuid))
         );
     }
 

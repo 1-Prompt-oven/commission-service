@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommissionEntityMapper {
 
-    public CommissionResponseDto toCommissionResponseDto(Commission commission, Role role,
-            String commissionModifyRequest) {
+    public CommissionResponseDto toCommissionResponseDto(Commission commission, Role role) {
         return CommissionResponseDto.builder()
                 .commissionUuid(commission.getCommissionUuid())
                 .clientUuid(commission.getClientUuid())
@@ -26,7 +25,7 @@ public class CommissionEntityMapper {
                 .commissionModifyRequest(commission.getCommissionModifyRequest())
                 .commissionStatus(commission.getCommissionStatus())
                 .role(role)
-                .commissionModifyRequest(commissionModifyRequest)
+                .commissionModifyRequest(commission.getCommissionModifyRequest())
                 .commissionResult(commission.getCommissionResult())
                 .build();
     }

@@ -52,10 +52,7 @@ public class CommissionServiceImpl implements CommissionService {
         } else {
             throw new BaseException(NO_MATCHING_ROLE);
         }
-
-        String commissionModifyRequest = Role.CREATOR.equals(role) ? commission.getCommissionModifyRequest() : null;
-
-        return commissionEntityMapper.toCommissionResponseDto(commission, role, commissionModifyRequest);
+        return commissionEntityMapper.toCommissionResponseDto(commission, role);
     }
 
     @Override
